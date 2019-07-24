@@ -1,0 +1,12 @@
+<data>
+    <contact id="1">
+        <name>joseph</name>
+        <address>maliyil</address>
+        <phone>9746123742</phone>
+	</contact>
+    <contact id="2">
+        <name>Test2</name>
+        <address>Test Address2</address>
+       	<phone>1002</phone>
+    </contact>
+</data>
