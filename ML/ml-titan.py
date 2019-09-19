@@ -13,6 +13,9 @@ def read_file(path):
     new_data = pd.read_csv(path)
     new_data = new_data.dropna(axis=0)
     new_data['Sex'] = new_data['Sex'].apply(lambda sex: 1 if sex=='male' else 0)
+    new_data.Embarked[new_data.Embarked == 'S'] = 1
+    new_data.Embarked[new_data.Embarked == 'C'] = 2
+    new_data.Embarked[new_data.Embarked == 'Q'] = 3
     return new_data
 
 def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
@@ -23,13 +26,16 @@ def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
     return(mae)    
 
 titan_data = read_file(train_file_path)
+#print(titan_data.info())
+#debug
+#import pdb;pdb.set_trace()
 #titan_data = titan_data.dropna(axis=0)
 #titan_data['Sex'] = titan_data['Sex'].apply(lambda sex: 1 if sex=='male' else 0)
 #print(titan_data.head(150))
 
 Y = titan_data.Survived
 
-feature_columns = ['Pclass','Sex','Age','SibSp','Parch']
+feature_columns = ['Pclass','Sex','Age','SibSp','Parch','Embarked']
 X = titan_data[feature_columns]
 
 titanic_model = DecisionTreeRegressor(random_state=1)
@@ -74,7 +80,7 @@ final_model_person_survival = final_model.predict(X)
 print(final_model_person_survival)
 print(mean_absolute_error(Y, final_model_person_survival))
 
-#Random Forest
+# **** Random Forest ****
 # Define the model. Set random_state to 1
 rf_model = RandomForestRegressor()
 # fit your model
