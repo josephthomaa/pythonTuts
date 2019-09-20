@@ -3,6 +3,12 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
+from pandas.plotting import scatter_matrix 
+import matplotlib.pyplot as plt 
+from sklearn.metrics import accuracy_score
+#ignore warnings
+import warnings
+warnings.filterwarnings('ignore')
 
 
 # Path of the file to read
@@ -26,6 +32,7 @@ def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
     return(mae)    
 
 titan_data = read_file(train_file_path)
+#print(titan_data.groupby('class').size()) 
 #print(titan_data.info())
 #debug
 #import pdb;pdb.set_trace()
@@ -91,3 +98,7 @@ rf_val_predictions = rf_model.predict(val_X)
 rf_val_mae = mean_absolute_error(rf_val_predictions, val_y)
 
 print("Validation MAE for Random Forest Model: {}".format(rf_val_mae))
+
+# scatter plot matrix 
+#scatter_matrix(titan_data) 
+#plt.show() 
