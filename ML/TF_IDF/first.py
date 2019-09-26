@@ -5,27 +5,14 @@ import pandas as pd
 import numpy as np  
 import math
 
-
-time = [
-    'What is todays time',
-    'Tell me todays time',
-    'What is current time',
-    'sing a time weather python',
-]
-
-no_of_d = 2
 wiki = pd.read_csv('/home/simelabs/Desktop/pythonTuts/ML/TF_IDF/data/wikepedia.csv')
 weather = pd.read_csv('/home/simelabs/Desktop/pythonTuts/ML/TF_IDF/data/weather.csv')
 quotes = pd.read_csv('/home/simelabs/Desktop/pythonTuts/ML/TF_IDF/data/quotes.csv')
 #test = test.dropna(axis=0)
 
-questions1 = wiki['Questions']
-questions2 = time
-questions3 = quotes['Questions']
-
-questions1 = [element.lower() for element in questions1]
-questions2 = [element.lower() for element in questions2]
-questions3 = [element.lower() for element in questions3]
+questions1 = [element.lower() for element in wiki['Questions']]
+questions2 = [element.lower() for element in weather['Questions']]
+questions3 = [element.lower() for element in quotes['Questions']]
 #print(questions1)
 docs_list =	{
   "doc1": questions1,
@@ -92,44 +79,3 @@ export_csv = out_result.to_csv (r"/home/simelabs/Desktop/pythonTuts/ML/TF_IDF/da
 with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
     print(out_result)
 #print(out_result)
-
-
-
-
-'''def calc_tfid(word):
-    #no_t_doc number of times t appears in doc
-    no_of_doc = sum(word in s for s in weather)
-    no_of_doc2 = sum(word in s for s in time)
-
-    #tot_t_doc total num of appearance of t in all doc
-    tot_t_doc = no_of_doc+no_of_doc2
-    result_tfid =	{
-        "tfid1": no_of_doc/tot_t_doc,
-        "tfid2": no_of_doc2/tot_t_doc
-    }
-    return result_tfid 
-
-print(calc_tfid('weather'))'''
-
-'''X = vectorizer.fit_transform(weather)
-feature_words = vectorizer.get_feature_names()
-print(feature_words)'''
-#print(X.shape) 
-
-
-
-'''x_traincv = cv1.fit_transform(weather)
-x_traincv_df = pd.DataFrame(x_traincv.toarray(),columns=list(cv1.get_feature_names()))
-print(x_traincv_df)
-total_terms = np.sum(x_traincv)
-print("Total terms = ", np.sum(x_traincv))
-
-print(np.sum(x_traincv_df['current'],axis=0))'''
-
-
-
-
-      
-#print(x_traincv_df['current'])
-
-   
