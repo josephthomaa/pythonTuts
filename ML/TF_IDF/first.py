@@ -51,8 +51,8 @@ def calc_tf_idf(words,x_traincv_df,total_terms,doc_name,Results):
         print('idf = ',idf)
 
         tf_idf = tfid*idf
-        res = pd.DataFrame({"Word":[words[x]],"Doc Name": [doc_name],"TF value":[tfid],"IDF value":[idf],"Profile Score":[tf_idf]})
-        Results = Results.append(res)
+      
+        Results = Results.append(res)  res = pd.DataFrame({"Word":[words[x]],"Doc Name": [doc_name],"TF value":[tfid],"IDF value":[idf],"Profile Score":[tf_idf]})
     return Results    
         
 
@@ -75,6 +75,8 @@ def doc_val_calc(docs_list,Results):
 
 
 out_result = doc_val_calc(docs_list,Results)
+out_result = out_result.sort_values('Profile Score',ascending=False)
+out_result = out_result.head(50)
 export_csv = out_result.to_csv (r"/home/simelabs/Desktop/pythonTuts/ML/TF_IDF/data/export_dataframe.csv", index = None, header=True) 
 with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
     print(out_result)
