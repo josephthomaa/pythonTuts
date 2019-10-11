@@ -95,7 +95,7 @@ print("Top 50 Words ",top_words)
 TD_Matrix = pd.DataFrame({'Word': [],'Wikipedia': [],"News":[],
                     "Weather":[],"Random famous quotes":[],"Synonym":[],"Jokes":[],"Global Time":[]})
 
-# better logic needed
+# better logic if possible 
 for _word in top_words:
     if((out_result.loc[out_result['Word'] == _word]).empty):
         res = pd.DataFrame({'Word': [_word],'Wikipedia': [0],"News":[0],
@@ -108,13 +108,13 @@ for _word in top_words:
         wiki=news=weather=rfm=syn=jokes=gt = 0
         for index, row in word_result.iterrows():
             print(row['Word'],row['Doc Name'],row['TF_IDF Score'])
-            wiki = wiki+row['TF_IDF Score'] if row['Doc Name'] == 'Wikipedia' else 0
-            news = news+row['TF_IDF Score'] if row['Doc Name'] == 'News' else 0
-            weather = weather+row['TF_IDF Score'] if row['Doc Name'] == 'Weather' else 0
-            rfm = rfm+row['TF_IDF Score'] if row['Doc Name'] == 'Random famous quotes' else 0
-            syn = syn+row['TF_IDF Score'] if row['Doc Name'] == 'Synonym' else 0
-            jokes = jokes+row['TF_IDF Score'] if row['Doc Name'] == 'Jokes' else 0
-            gt = gt+row['TF_IDF Score'] if row['Doc Name'] == 'Global Time' else 0
+            wiki = wiki+row['TF_IDF Score'] if (row['Doc Name'] == 'Wikipedia') else wiki
+            news = news+row['TF_IDF Score'] if (row['Doc Name'] == 'News') else news
+            weather = weather+row['TF_IDF Score'] if (row['Doc Name'] == 'Weather') else weather
+            rfm = rfm+row['TF_IDF Score'] if (row['Doc Name'] == 'Random famous quotes') else rfm
+            syn = syn+row['TF_IDF Score'] if (row['Doc Name'] == 'Synonym') else syn
+            jokes = jokes+row['TF_IDF Score'] if (row['Doc Name'] == 'Jokes') else jokes
+            gt = gt+row['TF_IDF Score'] if (row['Doc Name'] == 'Global Time') else gt
 
         res = pd.DataFrame({'Word': [_word],'Wikipedia': [wiki],"News":[news],
                     "Weather":[weather],"Random famous quotes":[rfm],"Synonym":[syn],"Jokes":[jokes],"Global Time":[gt]})
