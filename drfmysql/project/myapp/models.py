@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
  
 class University(models.Model):
     name = models.CharField(max_length=50)
@@ -24,7 +25,8 @@ class Student(models.Model):
 
 class Expense(models.Model):
     expense_name = models.CharField(max_length=50)
-    expense_amt = models.IntegerField()        
+    expense_amt = models.IntegerField()
+    expense_date = models.DateTimeField(default=now, editable=True)        
 
     class Meta:
         verbose_name = "Expense"
