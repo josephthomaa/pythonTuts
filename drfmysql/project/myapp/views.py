@@ -4,7 +4,7 @@ from rest_framework import viewsets,status
 from rest_framework.views import APIView, Response
 from .models import University, Student, Expense
 from .serializers import UniversitySerializer, StudentSerializer, ExpenseSerializer
-
+from django.db.models import Count, Sum
  
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
@@ -23,6 +23,9 @@ class CustomView(APIView):
         exp_type = request.GET.get('q', '')
         if(exp_type == ''):
             queryset = Expense.objects.all()
+            #queryset = Expense.objects.values('expense_name').annotate(Sum('expense_amt')).order_by()
+            #queryset = Expense.objects.raw('select id,expense_name,sum(expense_amt) as expense_amt ,expense_date from myapp_expense group by expense_name;')
+            
         else:
             queryset = Expense.objects.filter(expense_name=exp_type)
         serializer_class = ExpenseSerializer(queryset, many=True)
