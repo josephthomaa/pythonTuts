@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dh%-22)y8^e_k58wj)tnop$@87%^#f=8%_!f-fm(m_6z)+fb5f'
+SECRET_KEY = '^3yokl2oxhu3d@p2lrndf@s^+)lxwawydt#$)o*#&bn5s%wy)r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'project.rental',
+    'rest_framework',
+    'rest_framework_swagger',
+    'djoser',
+    'rest_framework.authtoken',
+    'project.webapp'
 ]
 
 MIDDLEWARE = [
@@ -75,11 +80,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rentaldb',
-        'USER': 'rootusr',
-        'PASSWORD': 'P@$$word123',
+        'NAME': 'expenseDB',
+        'USER': 'expenseAdmin',
+        'PASSWORD': 'Admin1@3',
         'HOST': '127.0.0.1', # Or an IP Address that your DB is hosted on
         'PORT': '',
     },
@@ -123,3 +128,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+REST_FRAMEWORK = { 
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' ,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    }
