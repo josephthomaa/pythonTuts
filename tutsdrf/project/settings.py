@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'djoser',
     'rest_framework.authtoken',
-    'project.webapp'
+    'project.webapp',
+    
 ]
 
 MIDDLEWARE = [
