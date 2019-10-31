@@ -7,6 +7,7 @@ from .serializers import ExpenseTypeSerializer, ExpenseSerializer, CustomExpense
 from django.db.models import Count, Sum
 import json
 from django.http import HttpResponse
+from rest_framework.permissions import IsAuthenticated 
  
 class ExpenseViewSet(viewsets.ModelViewSet):
     queryset = Expense.objects.all().select_related()
@@ -14,6 +15,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     serializer_class = ExpenseSerializer
  
 class ExpenseTypeViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = ExpenseType.objects.all()
     serializer_class = ExpenseTypeSerializer
 
