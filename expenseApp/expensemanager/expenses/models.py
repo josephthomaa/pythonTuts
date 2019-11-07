@@ -15,8 +15,8 @@ class ExpenseCategory(models.Model):
         return self.cat_name    
 
 class Expense(models.Model):
-    ExpenseCategory = models.ForeignKey(ExpenseCategory,related_name='expense', on_delete=models.DO_NOTHING) 
-    expense_user = models.ForeignKey(User, related_name='user', on_delete=models.DO_NOTHING , null=True)   
+    ExpenseCategory = models.ForeignKey(ExpenseCategory, related_name='expense', on_delete=models.DO_NOTHING)
+    expense_user = models.ForeignKey(User, related_name='user', on_delete=models.DO_NOTHING, null=True)
     expense_name = models.CharField(max_length=50)
     expense_amt = models.IntegerField()
     expense_date = models.DateTimeField(default=now, editable=True)
