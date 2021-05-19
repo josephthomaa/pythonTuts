@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Pandas samples</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+      <body>
+        <div class="container" style="width: auto;">
+            <h3> Pandas General</h3>    
+            <dl>
+              <dt>changing index :</dt>
+              <dd>- new_index_df = old_df.set_index("column_name")</dd>
+              <dd>- old_df.set_index("Date", inplace=True) , <b>using inplace=True replaces original df</b></dd>
+              <dt>Convert date to datetime</dt>
+              <dd>- df['Date'] = pd.to_datetime(df['Date'])</dd>
+              <dt>Sort Index</dt>
+              <dd>-  df.sort_index(inplace=True)</dd>
+              <dd>- df.sort_values(by="column_name", ascending=True, inplace=True)</dd>
+              <dt> Get Unique</dt>
+              <dd>-  df.column_name.unique()</dd>
+              <dt>Create a new dataframe</dt>
+              <dd>- new_df = pd.DataFrame() </dd>
+              <dt>To select the first row of data in a DataFrame</dt>
+              <dd>- df.iloc[0]</dd>
+              <dt></dt>
+              <dd>-  </dd>
+              <dt></dt>
+              <dd>-  </dd>
+            </dl>     
+          </div>
+          <div class="container" style="width: auto;">
+            <h3>pandas Filter by column</h3>
+            <dl>
+              <dt>Sample</dt>
+              <dd>- filtered_df = df[df['column_name']=="value"]</dd>
+              <dd>- filtered_df = df.copy()[df.column_name == 'value']</dd>
+            </dl>     
+          </div>
+          <div class="container" style="width: auto;">
+            <h3>pandas Group by column</h3>
+            <dl>
+              <dt>Sample- groupby</dt>
+              <dd>- grouped_df = df.groupby("column_name")</dd>
+              <dt>Sample- get a group</dt>
+              <dd>- grouped_df.get_group("column_value")</dd>
+            </dl>     
+          </div>
+      </body>
+</html>
